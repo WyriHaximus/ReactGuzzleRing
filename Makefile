@@ -20,5 +20,5 @@ dunit: init
 dunit-nightly: init
 	./vendor/bin/dunit -c .dunitconfig-nightly
 
-coveralls: init
-	if [ -f ./build/logs/clover.xml ]; then ./vendor/bin/coveralls; fi
+travis-coverage: init
+	if [ -f ./build/logs/clover.xml ]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover ./build/logs/clover.xml; fi

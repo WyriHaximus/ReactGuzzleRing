@@ -48,7 +48,7 @@ before_script:
 script: make travis
 
 after_script:
-  - make coveralls
+  - make travis-coverage
 
 notifications:
   webhooks:
