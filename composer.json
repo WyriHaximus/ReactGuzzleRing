@@ -12,8 +12,10 @@
     "require": {
         "guzzlehttp/ringphp": "~1.0",
         "guzzlehttp/guzzle": "~5.0",
-        "wyrihaximus/react-guzzle-http-client": "~1.0",
-        "react/dns": "^0.4.1"
+        "wyrihaximus/react-guzzle-http-client": "^3.0.0",
+        "react/dns": "^0.4.1",
+        "psr/http-message": "^1.0",
+        "guzzlehttp/psr7": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
