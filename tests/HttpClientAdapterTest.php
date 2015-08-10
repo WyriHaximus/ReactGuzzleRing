@@ -35,7 +35,14 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->requestArray = [];
+        $this->requestArray = [
+            'http_method' => 'GET',
+            'url' => 'http://example.com/',
+            'headers' => [],
+            'body' => 'abc',
+            'version' => '1.1',
+            'client' => [],
+        ];
         $this->loop = Factory::create();
         $this->requestFactory = Phake::mock('WyriHaximus\React\Guzzle\HttpClient\RequestFactory');
         $this->httpClient = Phake::partialMock(
@@ -56,13 +63,8 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
 
     public function testSend()
     {
-        $deferred = new Deferred();
-        $this->loop->futureTick(function () use ($deferred) {
-            $deferred->resolve();
-        });
-
-        Phake::when($this->requestFactory)->create($this->requestArray, $this->httpClient, $this->loop)->thenReturn(
-            $deferred->promise()
+        Phake::when($this->requestFactory)->create($this->isInstanceOf('GuzzleHttp\Psr7\Request'), [], $this->httpClient, $this->loop)->thenReturn(
+            new FulfilledPromise(Phake::mock('Psr\Http\Message\ResponseInterface'))
         );
 
         $adapter = $this->adapter;
@@ -76,7 +78,8 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
 
         Phake::inOrder(
             Phake::verify($this->requestFactory, Phake::times(1))->create(
-                $this->requestArray,
+                $this->isInstanceOf('GuzzleHttp\Psr7\Request'),
+                [],
                 $this->httpClient,
                 $this->loop
             )
@@ -87,7 +90,7 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
 
     public function testSendFailed()
     {
-        Phake::when($this->requestFactory)->create($this->requestArray, $this->httpClient, $this->loop)->thenReturn(
+        Phake::when($this->requestFactory)->create($this->isInstanceOf('GuzzleHttp\Psr7\Request'), [], $this->httpClient, $this->loop)->thenReturn(
             new RejectedPromise(123)
         );
 
@@ -104,7 +107,8 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
 
         Phake::inOrder(
             Phake::verify($this->requestFactory, Phake::times(1))->create(
-                $this->requestArray,
+                $this->isInstanceOf('GuzzleHttp\Psr7\Request'),
+                [],
                 $this->httpClient,
                 $this->loop
             )

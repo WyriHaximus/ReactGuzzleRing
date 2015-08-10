@@ -2,7 +2,9 @@
 
 namespace WyriHaximus\React\RingPHP;
 
+use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Ring\Future\FutureArray;
+use Psr\Http\Message\ResponseInterface;
 use React\Dns\Resolver\Factory as DnsFactory;
 use React\Dns\Resolver\Resolver as DnsResolver;
 use React\EventLoop\LoopInterface;
@@ -116,16 +118,31 @@ class HttpClientAdapter
     }
 
     /**
-     * @param array $request
+     * @param array $requestArray
      * @return FutureArray
      */
-    public function __invoke(array $request)
+    public function __invoke(array $requestArray)
     {
+        $request = new Request(
+            $requestArray['http_method'],
+            $requestArray['url'],
+            $requestArray['headers'],
+            $requestArray['body'],
+            $requestArray['version']
+        );
         $ready = false;
-        $httpRequest = $this->requestFactory->create($request, $this->httpClient, $this->loop);
-        return new FutureArray($httpRequest->then(function ($arg) use (&$ready) {
+        $httpRequest = $this->requestFactory->create($request, $requestArray['client'], $this->httpClient, $this->loop);
+        return new FutureArray($httpRequest->then(function (ResponseInterface $response) use (&$ready, $requestArray) {
             $ready = true;
-            return $arg;
+            $responseArray = [
+                'effective_url' => $requestArray['url'],
+                'body' => $response->getBody(),
+                'headers' => $response->getHeaders(),
+                'status' => $response->getStatusCode(),
+                'reason' => $response->getReasonPhrase(),
+                'version' => $response->getProtocolVersion(),
+            ];
+            return $responseArray;
         }, function ($error) use (&$ready) {
             $ready = true;
             return [
