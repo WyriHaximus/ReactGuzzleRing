@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "php": "^5.4|^7.0",
         "guzzlehttp/ringphp": "~1.0",
         "guzzlehttp/guzzle": "~5.0",
         "wyrihaximus/react-guzzle-http-client": "^3.0.0",
