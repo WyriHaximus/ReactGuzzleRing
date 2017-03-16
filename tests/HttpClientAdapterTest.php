@@ -11,8 +11,8 @@
 namespace WyriHaximus\React\Tests\RingPHP;
 
 use Phake;
+use React\Dns\Resolver\Factory as ResolverFactory;
 use React\EventLoop\Factory;
-use React\Promise\Deferred;
 use React\Promise\FulfilledPromise;
 use React\Promise\RejectedPromise;
 use WyriHaximus\React\RingPHP\HttpClientAdapter;
@@ -28,6 +28,7 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
     protected $requestArray;
     protected $loop;
     protected $requestFactory;
+    protected $dnsResolver;
     protected $httpClient;
     protected $adapter;
 
@@ -45,6 +46,7 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
         ];
         $this->loop = Factory::create();
         $this->requestFactory = Phake::mock('WyriHaximus\React\Guzzle\HttpClient\RequestFactory');
+        $this->dnsResolver = (new ResolverFactory())->createCached('8.8.8.8', $this->loop);
         $this->httpClient = Phake::partialMock(
             'React\HttpClient\Client',
             Phake::mock('React\SocketClient\ConnectorInterface'),
@@ -58,12 +60,12 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
     {
         parent::tearDown();
 
-        unset($this->adapter, $this->request, $this->httpClient, $this->requestFactory, $this->loop);
+        unset($this->adapter, $this->request, $this->httpClient, $this->requestFactory, $this->dnsResolver, $this->loop);
     }
 
     public function testSend()
     {
-        Phake::when($this->requestFactory)->create($this->isInstanceOf('GuzzleHttp\Psr7\Request'), [], $this->httpClient, $this->loop)->thenReturn(
+        Phake::when($this->requestFactory)->create($this->isInstanceOf('GuzzleHttp\Psr7\Request'), [], $this->dnsResolver, $this->httpClient, $this->loop)->thenReturn(
             new FulfilledPromise(Phake::mock('Psr\Http\Message\ResponseInterface'))
         );
 
@@ -80,6 +82,7 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
             Phake::verify($this->requestFactory, Phake::times(1))->create(
                 $this->isInstanceOf('GuzzleHttp\Psr7\Request'),
                 [],
+                $this->dnsResolver,
                 $this->httpClient,
                 $this->loop
             )
@@ -90,7 +93,7 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
 
     public function testSendFailed()
     {
-        Phake::when($this->requestFactory)->create($this->isInstanceOf('GuzzleHttp\Psr7\Request'), [], $this->httpClient, $this->loop)->thenReturn(
+        Phake::when($this->requestFactory)->create($this->isInstanceOf('GuzzleHttp\Psr7\Request'), [], $this->dnsResolver, $this->httpClient, $this->loop)->thenReturn(
             new RejectedPromise(123)
         );
 
@@ -109,6 +112,7 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
             Phake::verify($this->requestFactory, Phake::times(1))->create(
                 $this->isInstanceOf('GuzzleHttp\Psr7\Request'),
                 [],
+                $this->dnsResolver,
                 $this->httpClient,
                 $this->loop
             )

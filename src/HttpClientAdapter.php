@@ -131,7 +131,13 @@ class HttpClientAdapter
             $requestArray['version']
         );
         $ready = false;
-        $httpRequest = $this->requestFactory->create($request, $requestArray['client'], $this->httpClient, $this->loop);
+        $httpRequest = $this->requestFactory->create(
+            $request,
+            $requestArray['client'],
+            $this->dnsResolver,
+            $this->httpClient,
+            $this->loop
+        );
         return new FutureArray($httpRequest->then(function (ResponseInterface $response) use (&$ready, $requestArray) {
             $ready = true;
             $responseArray = [
