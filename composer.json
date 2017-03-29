@@ -13,7 +13,7 @@
         "php": "^5.4|^7.0",
         "guzzlehttp/ringphp": "~1.0",
         "guzzlehttp/guzzle": "~5.0",
-        "wyrihaximus/react-guzzle-http-client": "dev-improvement-use-clue-buzz-instead-of-react-http-client",
+        "wyrihaximus/react-guzzle-http-client": "^4.0",
         "psr/http-message": "^1.0"
     },
     "require-dev": {

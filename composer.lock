@@ -4,34 +4,36 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd2f36e2df6b6b01f9d46f7b3088067c",
+    "content-hash": "a2a957417eedcdbae746f278ef46f7fe",
     "packages": [
         {
             "name": "clue/buzz-react",
-            "version": "v0.5.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/clue/php-buzz-react.git",
-                "reference": "ae65feb2d15a9b0632b2b816c9037a6f6300f528"
+                "reference": "693c96d35f0cd0e4f0e1a51b976433a91792eff9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clue/php-buzz-react/zipball/ae65feb2d15a9b0632b2b816c9037a6f6300f528",
-                "reference": "ae65feb2d15a9b0632b2b816c9037a6f6300f528",
+                "url": "https://api.github.com/repos/clue/php-buzz-react/zipball/693c96d35f0cd0e4f0e1a51b976433a91792eff9",
+                "reference": "693c96d35f0cd0e4f0e1a51b976433a91792eff9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3",
-                "psr/http-message": "~1.0",
-                "react/dns": "0.3.*|0.4.*",
-                "react/event-loop": "0.3.*|0.4.*",
-                "react/http-client": "0.3.*|0.4.*",
+                "psr/http-message": "^1.0",
+                "react/dns": "^0.4.1 || ^0.3",
+                "react/event-loop": "^0.4 || ^0.3",
+                "react/http-client": "^0.4 || ^0.3",
                 "react/promise": "^2 || ^1.1",
-                "react/socket-client": "^0.5 || ^0.4 || ^0.3",
-                "ringcentral/psr7": "~1.2"
+                "react/socket-client": "^0.5 || ^0.4.5",
+                "react/stream": "^0.4 || ^0.3.1",
+                "ringcentral/psr7": "^1.2"
             },
             "require-dev": {
-                "clue/block-react": "~1.0"
+                "clue/block-react": "^1.0",
+                "phpunit/phpunit": "^4.5"
             },
             "type": "library",
             "autoload": {
@@ -57,7 +59,7 @@
                 "http client",
                 "reactphp"
             ],
-            "time": "2016-04-02T00:41:43+00:00"
+            "time": "2016-10-21T10:29:37+00:00"
         },
         {
             "name": "clue/http-proxy-react",
@@ -270,16 +272,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855"
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/0d6c7ca039329247e4f0f8f8f6506810e8248855",
-                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
                 "shasum": ""
             },
             "require": {
@@ -331,7 +333,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-02-27T10:51:17+00:00"
+            "time": "2017-03-20T17:10:46+00:00"
         },
         {
             "name": "guzzlehttp/ringphp",
@@ -605,16 +607,16 @@
         },
         {
             "name": "react/http-client",
-            "version": "v0.4.16",
+            "version": "v0.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/http-client.git",
-                "reference": "307d8f9c9062c9f2fb21cde6ad13afee040cce15"
+                "reference": "75ee8a113f156834aaabfe0055e8db531cb4892c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/http-client/zipball/307d8f9c9062c9f2fb21cde6ad13afee040cce15",
-                "reference": "307d8f9c9062c9f2fb21cde6ad13afee040cce15",
+                "url": "https://api.github.com/repos/reactphp/http-client/zipball/75ee8a113f156834aaabfe0055e8db531cb4892c",
+                "reference": "75ee8a113f156834aaabfe0055e8db531cb4892c",
                 "shasum": ""
             },
             "require": {
@@ -626,6 +628,9 @@
                 "react/promise": "~2.2",
                 "react/socket-client": "^0.5 || ^0.4 || ^0.3",
                 "react/stream": "0.4.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0 || ^4.8.10"
             },
             "type": "library",
             "autoload": {
@@ -641,24 +646,27 @@
             "keywords": [
                 "http"
             ],
-            "time": "2017-03-01T11:07:56+00:00"
+            "time": "2017-03-20T09:55:48+00:00"
         },
         {
             "name": "react/promise",
-            "version": "v2.5.0",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/promise.git",
-                "reference": "2760f3898b7e931aa71153852dcd48a75c9b95db"
+                "reference": "62785ae604c8d69725d693eb370e1d67e94c4053"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/promise/zipball/2760f3898b7e931aa71153852dcd48a75c9b95db",
-                "reference": "2760f3898b7e931aa71153852dcd48a75c9b95db",
+                "url": "https://api.github.com/repos/reactphp/promise/zipball/62785ae604c8d69725d693eb370e1d67e94c4053",
+                "reference": "62785ae604c8d69725d693eb370e1d67e94c4053",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
             },
             "type": "library",
             "autoload": {
@@ -684,7 +692,7 @@
                 "promise",
                 "promises"
             ],
-            "time": "2016-12-22T14:09:01+00:00"
+            "time": "2017-03-25T12:08:31+00:00"
         },
         {
             "name": "react/promise-timer",
@@ -923,20 +931,20 @@
         },
         {
             "name": "wyrihaximus/react-guzzle-http-client",
-            "version": "dev-improvement-use-clue-buzz-instead-of-react-http-client",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/react-guzzle-http-client.git",
-                "reference": "1aae5353ae150d1dc9d9dfe05357f6777004f320"
+                "reference": "b487d7aaf3a7b928245b1d3719de4dff60af70a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/react-guzzle-http-client/zipball/1aae5353ae150d1dc9d9dfe05357f6777004f320",
-                "reference": "1aae5353ae150d1dc9d9dfe05357f6777004f320",
+                "url": "https://api.github.com/repos/WyriHaximus/react-guzzle-http-client/zipball/b487d7aaf3a7b928245b1d3719de4dff60af70a7",
+                "reference": "b487d7aaf3a7b928245b1d3719de4dff60af70a7",
                 "shasum": ""
             },
             "require": {
-                "clue/buzz-react": "^0.5.0",
+                "clue/buzz-react": "^1.0",
                 "clue/http-proxy-react": "^0.1.0",
                 "clue/socks-react": "^0.4.0",
                 "guzzlehttp/psr7": "^1.0",
@@ -944,6 +952,7 @@
                 "psr/http-message": "^1.0",
                 "react/dns": "^0.4.1",
                 "react/http-client": "^0.4.9",
+                "react/socket-client": "^0.5",
                 "react/stream": "^0.4.2",
                 "wyrihaximus/ticking-promise": "^1.6"
             },
@@ -972,7 +981,7 @@
                 }
             ],
             "description": "Asynchronous GuzzleRing adapter powered by react/http-client",
-            "time": "2017-03-14 20:49:06"
+            "time": "2017-03-29T05:57:02+00:00"
         },
         {
             "name": "wyrihaximus/ticking-promise",
@@ -2199,9 +2208,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "wyrihaximus/react-guzzle-http-client": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
