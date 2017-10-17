@@ -49,8 +49,8 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
         $this->dnsResolver = (new ResolverFactory())->createCached('8.8.8.8', $this->loop);
         $this->httpClient = Phake::partialMock(
             'React\HttpClient\Client',
-            Phake::mock('React\SocketClient\ConnectorInterface'),
-            Phake::mock('React\SocketClient\ConnectorInterface')
+            Phake::mock('React\EventLoop\LoopInterface'),
+            Phake::mock('React\Socket\ConnectorInterface')
         );
 
         $this->adapter = new HttpClientAdapter($this->loop, $this->httpClient, null, $this->requestFactory);
@@ -142,8 +142,8 @@ class HttpClientAdapterTest extends \PHPUnit_Framework_TestCase
 
         $mock = Phake::partialMock(
             'React\HttpClient\Client',
-            Phake::mock('React\SocketClient\ConnectorInterface'),
-            Phake::mock('React\SocketClient\ConnectorInterface')
+            Phake::mock('React\EventLoop\LoopInterface'),
+            Phake::mock('React\Socket\ConnectorInterface')
         );
         $this->adapter->setHttpClient($mock);
         $this->assertSame($mock, $this->adapter->getHttpClient());
