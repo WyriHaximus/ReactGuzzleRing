@@ -9,7 +9,7 @@ use React\Dns\Resolver\Factory as DnsFactory;
 use React\Dns\Resolver\Resolver as DnsResolver;
 use React\EventLoop\LoopInterface;
 use React\HttpClient\Client as HttpClient;
-use React\HttpClient\Factory as HttpClientFactory;
+use React\Socket\Connector;
 use WyriHaximus\React\Guzzle\HttpClient\RequestFactory;
 
 class HttpClientAdapter
@@ -61,8 +61,15 @@ class HttpClientAdapter
         if (!($httpClient instanceof HttpClient)) {
             $this->setDnsResolver($this->dnsResolver);
 
-            $factory = new HttpClientFactory();
-            $httpClient = $factory->create($this->loop, $this->dnsResolver);
+            $httpClient = new HttpClient(
+                $this->loop,
+                new Connector(
+                    $this->loop,
+                    [
+                        'dns' => $this->dnsResolver,
+                    ]
+                )
+            );
         }
 
         $this->httpClient = $httpClient;
@@ -131,7 +138,13 @@ class HttpClientAdapter
             $requestArray['version']
         );
         $ready = false;
-        $httpRequest = $this->requestFactory->create($request, $requestArray['client'], $this->httpClient, $this->loop);
+        $httpRequest = $this->requestFactory->create(
+            $request,
+            $requestArray['client'],
+            $this->dnsResolver,
+            $this->httpClient,
+            $this->loop
+        );
         return new FutureArray($httpRequest->then(function (ResponseInterface $response) use (&$ready, $requestArray) {
             $ready = true;
             $responseArray = [
