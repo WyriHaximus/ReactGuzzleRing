@@ -66,22 +66,22 @@
         },
         {
             "name": "clue/http-proxy-react",
-            "version": "v1.2.0",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/clue/php-http-proxy-react.git",
-                "reference": "06bc84cda43c724edc5b5a19f61452e8094ba99d"
+                "url": "https://github.com/clue/reactphp-http-proxy.git",
+                "reference": "5a6790443366dada996993c0a458f13e616fe10e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clue/php-http-proxy-react/zipball/06bc84cda43c724edc5b5a19f61452e8094ba99d",
-                "reference": "06bc84cda43c724edc5b5a19f61452e8094ba99d",
+                "url": "https://api.github.com/repos/clue/reactphp-http-proxy/zipball/5a6790443366dada996993c0a458f13e616fe10e",
+                "reference": "5a6790443366dada996993c0a458f13e616fe10e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3",
                 "react/promise": " ^2.1 || ^1.2.1",
-                "react/socket": "^1.0 || ^0.8 || ^0.7.1",
+                "react/socket": "^1.1",
                 "ringcentral/psr7": "^1.2"
             },
             "require-dev": {
@@ -105,8 +105,8 @@
                     "email": "christian@lueck.tv"
                 }
             ],
-            "description": "Async HTTP CONNECT proxy connector, use any TCP/IP protocol through an HTTP proxy server, built on top of ReactPHP",
-            "homepage": "https://github.com/clue/php-http-proxy-react",
+            "description": "Async HTTP proxy connector, use any TCP/IP-based protocol through an HTTP CONNECT proxy server, built on top of ReactPHP",
+            "homepage": "https://github.com/clue/reactphp-http-proxy",
             "keywords": [
                 "async",
                 "connect",
@@ -114,7 +114,7 @@
                 "proxy",
                 "reactphp"
             ],
-            "time": "2017-08-30T06:47:01+00:00"
+            "time": "2018-10-30T14:41:14+00:00"
         },
         {
             "name": "clue/socks-react",
@@ -950,16 +950,16 @@
         },
         {
             "name": "ringcentral/psr7",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ringcentral/psr7.git",
-                "reference": "2594fb47cdc659f3fcf0aa1559b7355460555303"
+                "reference": "dcd84bbb49b96c616d1dcc8bfb9bef3f2cd53d1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ringcentral/psr7/zipball/2594fb47cdc659f3fcf0aa1559b7355460555303",
-                "reference": "2594fb47cdc659f3fcf0aa1559b7355460555303",
+                "url": "https://api.github.com/repos/ringcentral/psr7/zipball/dcd84bbb49b96c616d1dcc8bfb9bef3f2cd53d1c",
+                "reference": "dcd84bbb49b96c616d1dcc8bfb9bef3f2cd53d1c",
                 "shasum": ""
             },
             "require": {
@@ -1004,7 +1004,7 @@
                 "stream",
                 "uri"
             ],
-            "time": "2016-03-25T17:36:49+00:00"
+            "time": "2018-01-15T21:00:49+00:00"
         },
         {
             "name": "wyrihaximus/react-guzzle-http-client",
